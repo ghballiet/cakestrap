@@ -4,7 +4,7 @@
 </div>
 
 <div class="row">
-  <div class="span4">
+  <div class="span3">
     <ul class="well nav nav-list">
       <li class="nav-header"><?= __('Recipe') ?> Actions</li>
       <li><?= $this->Html->link(__('Edit Recipe'), array('action'=>'edit', $recipe['Recipe']['id'])) ?></li>
@@ -16,7 +16,7 @@
       <li><?= $this->Html->link(__('New User'), array('controller'=>'users', 'action'=>'add')) ?></li>
     </ul>
   </div>
-  <div class="span8">
+  <div class="span9">
     <table class="table table-condensed">
       <tr>      
         <th><?= __('Id') ?></th>

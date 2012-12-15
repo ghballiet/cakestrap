@@ -6,7 +6,7 @@
 </div>
 
 <div class="row">
-  <div class="span4">
+  <div class="span3">
     <ul class="well nav nav-list">
       <li class="nav-header"><?= "<?= __('{$shn}') ?>" ?> Actions</li>
       <li><?= "<?= \$this->Html->link(__('Edit {$shn}'), array('action'=>'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}'])) ?>" ?></li>
@@ -29,7 +29,7 @@
 <? endforeach; ?>
     </ul>
   </div>
-  <div class="span8">
+  <div class="span9">
     <table class="table table-condensed">
 <? foreach($fields as $field): ?>
       <tr>      

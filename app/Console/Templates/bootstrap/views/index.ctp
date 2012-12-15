@@ -24,28 +24,28 @@
 <? $cont = $details['controller']; ?>
 <? $pk = $details['primaryKey']; ?>
 <? $is_key = true; ?>
-      <td><?= "<?= \$this->Html->link(\${$sv}['{$alias}']['{$display}'], array('controller'=>'{$cont}', 'action'=>'view', \${$sv}['{$alias}']['{$pk}'])) ?>" ?></td>
+	  <td><?= "<?= \$this->Html->link(\${$sv}['{$alias}']['{$display}'], array('controller'=>'{$cont}', 'action'=>'view', \${$sv}['{$alias}']['{$pk}'])) ?>" ?></td>
 <? endif; ?>
 <? endforeach; ?>
 <? endif; ?>
 <? if($is_key !== true): ?>
-      <td><?= "<?= h(\${$singularVar}['{$modelClass}']['{$field}']) ?>" ?></td>
+	  <td><?= "<?= h(\${$singularVar}['{$modelClass}']['{$field}']) ?>" ?></td>
 <? endif; ?>
 <? endforeach; ?>
 <? $pk = $primaryKey; ?>
 
-      <td class="actions">
-        <div class="btn-group">
-          <a class="btn btn-mini dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
-            Action <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu pull-right">
-            <li><?= "<?= \$this->Html->link(__('View'), array('action'=>'view', \${$sv}['{$modelClass}']['{$pk}'])) ?>" ?></li>
-            <li><?= "<?= \$this->Html->link(__('Edit'), array('action'=>'view', \${$sv}['{$modelClass}']['{$pk}'])) ?>" ?></li>
-            <li><?= "<?= \$this->Form->postLink(__('Delete'), array('action'=>'delete', \${$sv}['{$modelClass}']['{$pk}']), null, __('Are you sure?')) ?>" ?></li>
-          </ul>
-        </div>
-      </td>
+	  <td class="actions">
+		<div class="btn-group">
+		  <a class="btn btn-mini dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+			Action <span class="caret"></span>
+		  </a>
+		  <ul class="dropdown-menu pull-right">
+			<li><?= "<?= \$this->Html->link(__('View'), array('action'=>'view', \${$sv}['{$modelClass}']['{$pk}'])) ?>" ?></li>
+			<li><?= "<?= \$this->Html->link(__('Edit'), array('action'=>'view', \${$sv}['{$modelClass}']['{$pk}'])) ?>" ?></li>
+			<li><?= "<?= \$this->Form->postLink(__('Delete'), array('action'=>'delete', \${$sv}['{$modelClass}']['{$pk}']), null, __('Are you sure?')) ?>" ?></li>
+		  </ul>
+		</div>
+	  </td>
 	</tr>
 <?= "<? endforeach; ?>\n" ?>
   </tbody>
@@ -59,7 +59,7 @@
 <hr>
 
 <div class="row">
-  <div class="span4">
+  <div class="span3">
 	<ul class="well nav nav-list">
 	  <li class="nav-header"><?= __($pluralHumanName) ?></li>
 	  <li><?= "<?= \$this->Html->link(__('New {$singularHumanName}'), array('action'=>'add')) ?>" ?></li>
@@ -79,7 +79,7 @@
 <? endforeach; ?>
 	</ul>
   </div>
-  <div class="span8">
+  <div class="span9">
 	<div class="alert alert-info">
 <?= "<?= \$this->Paginator->counter(array('format'=>'Page {:page}/{:pages}, showing {:current}/{:count} records, from {:start}-{:end}')) ?>" ?>
 	</div>
