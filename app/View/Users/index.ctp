@@ -20,20 +20,28 @@
   <tbody>
 <? foreach($users as $user): ?>
 	<tr>
-        <td><?= h($user['User']['id']) ?></td>
-        <td><?= h($user['User']['first_name']) ?></td>
-        <td><?= h($user['User']['last_name']) ?></td>
-        <td><?= h($user['User']['username']) ?></td>
-        <td><?= h($user['User']['email']) ?></td>
-        <td><?= h($user['User']['password']) ?></td>
-        <td><?= h($user['User']['admin']) ?></td>
-        <td><?= h($user['User']['verified']) ?></td>
-        <td><?= h($user['User']['modified']) ?></td>
-        <td class="actions">
-          <?= $this->Html->link(__('View'), array('action'=>'view', $user['User']['id'])) ?>
-          <?= $this->Html->link(__('Edit'), array('action'=>'edit', $user['User']['id'])) ?>
-          <?= $this->Form->postLink(__('Delete'), array('action'=>'delete', $user['User']['id']), null, __('Are you sure?')) ?>
-        </td>
+      <td><?= h($user['User']['id']) ?></td>
+      <td><?= h($user['User']['first_name']) ?></td>
+      <td><?= h($user['User']['last_name']) ?></td>
+      <td><?= h($user['User']['username']) ?></td>
+      <td><?= h($user['User']['email']) ?></td>
+      <td><?= h($user['User']['password']) ?></td>
+      <td><?= h($user['User']['admin']) ?></td>
+      <td><?= h($user['User']['verified']) ?></td>
+      <td><?= h($user['User']['modified']) ?></td>
+
+      <td class="actions">
+        <div class="btn-group">
+          <a class="btn btn-mini dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+            Action <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu pull-right">
+            <li><?= $this->Html->link(__('View'), array('action'=>'view', $user['User']['id'])) ?></li>
+            <li><?= $this->Html->link(__('Edit'), array('action'=>'view', $user['User']['id'])) ?></li>
+            <li><?= $this->Form->postLink(__('Delete'), array('action'=>'delete', $user['User']['id']), null, __('Are you sure?')) ?></li>
+          </ul>
+        </div>
+      </td>
 	</tr>
 <? endforeach; ?>
   </tbody>

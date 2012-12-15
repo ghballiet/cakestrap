@@ -12,7 +12,7 @@ class User extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'id';
+	public $displayField = 'name';
 
 	public $virtualFields = array(
 		'name' => 'CONCAT(User.first_name, " ", User.last_name)'

@@ -99,7 +99,6 @@
       </td>
 	</tr>
 <? endforeach; ?>
-      
     </table>
 <? else: ?>
     <div class="alert alert-info">
@@ -109,4 +108,3 @@
   </div>
   
 </div>
-

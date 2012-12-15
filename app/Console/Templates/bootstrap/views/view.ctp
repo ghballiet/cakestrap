@@ -102,6 +102,7 @@
 <? endforeach; ?>
         <th class="actions"><?= "<?= __('Actions') ?>" ?></th>
       </tr>
+<? if($type == 'hasMany' || $type == 'manyToMany'): ?>
 <?= "<? foreach(\${$singularVar}['{$alias}'] as \${$osv}): ?>\n" ?>
 	<tr>
 <? foreach($details['fields'] as $field): ?>
@@ -120,7 +121,26 @@
         </div>
       </td>
 	</tr>
-<?= "<? endforeach; ?>\n" ?>      
+<?= "<? endforeach; ?>\n" ?>
+<? else: ?>
+    <tr>
+<? foreach($details['fields'] as $field): ?>
+      <td><?= "<?= h(\${$singularVar}['{$alias}']['{$field}']) ?>" ?></td>
+<? endforeach; ?>
+      <td class="actions">
+        <div class="btn-group">
+          <a class="btn btn-mini dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+            Action <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu pull-right">
+            <li><?= "<?= \$this->Html->link(__('View'), array('controller'=>'{$cont}', 'action'=>'view', \${$singularVar}['{$alias}']['{$pk}'])) ?>" ?></li>
+            <li><?= "<?= \$this->Html->link(__('Edit'), array('controller'=>'{$cont}', 'action'=>'edit', \${$singularVar}['{$alias}']['{$pk}'])) ?>" ?></li>
+            <li><?= "<?= \$this->Form->postLink(__('Delete'), array('controller'=>'{$cont}', 'action'=>'delete', \${$singularVar}['{$alias}']['{$pk}']), null, __('Are you sure?')) ?>" ?></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+<? endif; ?>
     </table>
 <?= "<? else: ?>\n" ?>
     <div class="alert alert-info">

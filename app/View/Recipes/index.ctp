@@ -17,19 +17,25 @@
   <tbody>
 <? foreach($recipes as $recipe): ?>
 	<tr>
-        <td><?= h($recipe['Recipe']['id']) ?></td>
-        <td><?= h($recipe['Recipe']['name']) ?></td>
-        <td><?= h($recipe['Recipe']['description']) ?></td>
-        <td><?= h($recipe['Recipe']['public']) ?></td>
-        <td>
-          <?= $this->Html->link($recipe['User']['name'], array('controller'=>'users', 'action'=>'view', $recipe['User']['id'])); ?>
-        </td>
-        <td><?= h($recipe['Recipe']['modified']) ?></td>
-        <td class="actions">
-          <?= $this->Html->link(__('View'), array('action'=>'view', $recipe['Recipe']['id'])) ?>
-          <?= $this->Html->link(__('Edit'), array('action'=>'edit', $recipe['Recipe']['id'])) ?>
-          <?= $this->Form->postLink(__('Delete'), array('action'=>'delete', $recipe['Recipe']['id']), null, __('Are you sure?')) ?>
-        </td>
+      <td><?= h($recipe['Recipe']['id']) ?></td>
+      <td><?= h($recipe['Recipe']['name']) ?></td>
+      <td><?= h($recipe['Recipe']['description']) ?></td>
+      <td><?= h($recipe['Recipe']['public']) ?></td>
+      <td><?= $this->Html->link($recipe['User']['name'], array('controller'=>'users', 'action'=>'view', $recipe['User']['id'])) ?></td>
+      <td><?= h($recipe['Recipe']['modified']) ?></td>
+
+      <td class="actions">
+        <div class="btn-group">
+          <a class="btn btn-mini dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+            Action <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu pull-right">
+            <li><?= $this->Html->link(__('View'), array('action'=>'view', $recipe['Recipe']['id'])) ?></li>
+            <li><?= $this->Html->link(__('Edit'), array('action'=>'view', $recipe['Recipe']['id'])) ?></li>
+            <li><?= $this->Form->postLink(__('Delete'), array('action'=>'delete', $recipe['Recipe']['id']), null, __('Are you sure?')) ?></li>
+          </ul>
+        </div>
+      </td>
 	</tr>
 <? endforeach; ?>
   </tbody>

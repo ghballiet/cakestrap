@@ -1,3 +1,4 @@
+<? $sv = $singularVar; ?>
 <div class="page-header">
   <h2><?= "<?= __('{$pluralHumanName}') ?>" ?></h2>
 </div>
@@ -14,33 +15,37 @@
   <tbody>
 <?= "<? foreach(\${$pluralVar} as \${$singularVar}): ?>\n" ?>
 	<tr>
-<?
-foreach($fields as $field) {
-	$is_key = false;
-	if(!empty($associations['belongsTo'])) {
-		foreach($associations['belongsTo'] as $alias => $details) {
-			$display = $details['displayField'];
-			$controller = $details['controller'];
-			$primary_key = $details['primaryKey'];
-			if($field === $details['foreignKey']) {
-				$is_key = true;
-				echo "        <td>\n          <?= ";
-				echo "\$this->Html->link(\${$singularVar}['{$alias}']['{$displayField}'], ";
-				echo "array('controller'=>'{$controller}', 'action'=>'view', \${$singularVar}['{$alias}']['{$primaryKey}'])); ";
-				echo "?>\n        </td>\n";
-				break;
-			}
-		}
-	}
-	if($is_key !== true)
-		echo "        <td><?= h(\${$singularVar}['{$modelClass}']['{$field}']) ?></td>\n";
-}
-echo "        <td class=\"actions\">\n";
-echo "          <?= \$this->Html->link(__('View'), array('action'=>'view', \${$singularVar}['{$modelClass}']['{$primaryKey}'])) ?>\n";
-echo "          <?= \$this->Html->link(__('Edit'), array('action'=>'edit', \${$singularVar}['{$modelClass}']['{$primaryKey}'])) ?>\n";
-echo "          <?= \$this->Form->postLink(__('Delete'), array('action'=>'delete', \${$singularVar}['{$modelClass}']['{$primaryKey}']), null, __('Are you sure?')) ?>\n";
-echo "        </td>\n";
-?>
+<? foreach($fields as $field): ?>
+<? $is_key = false; ?>
+<? if(!empty($associations['belongsTo'])): ?>
+<? foreach($associations['belongsTo'] as $alias => $details): ?>
+<? if($field === $details['foreignKey']): ?>
+<? $display = $details['displayField']; ?>
+<? $cont = $details['controller']; ?>
+<? $pk = $details['primaryKey']; ?>
+<? $is_key = true; ?>
+      <td><?= "<?= \$this->Html->link(\${$sv}['{$alias}']['{$display}'], array('controller'=>'{$cont}', 'action'=>'view', \${$sv}['{$alias}']['{$pk}'])) ?>" ?></td>
+<? endif; ?>
+<? endforeach; ?>
+<? endif; ?>
+<? if($is_key !== true): ?>
+      <td><?= "<?= h(\${$singularVar}['{$modelClass}']['{$field}']) ?>" ?></td>
+<? endif; ?>
+<? endforeach; ?>
+<? $pk = $primaryKey; ?>
+
+      <td class="actions">
+        <div class="btn-group">
+          <a class="btn btn-mini dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+            Action <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu pull-right">
+            <li><?= "<?= \$this->Html->link(__('View'), array('action'=>'view', \${$sv}['{$modelClass}']['{$pk}'])) ?>" ?></li>
+            <li><?= "<?= \$this->Html->link(__('Edit'), array('action'=>'view', \${$sv}['{$modelClass}']['{$pk}'])) ?>" ?></li>
+            <li><?= "<?= \$this->Form->postLink(__('Delete'), array('action'=>'delete', \${$sv}['{$modelClass}']['{$pk}']), null, __('Are you sure?')) ?>" ?></li>
+          </ul>
+        </div>
+      </td>
 	</tr>
 <?= "<? endforeach; ?>\n" ?>
   </tbody>
