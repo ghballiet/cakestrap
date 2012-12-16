@@ -12,11 +12,8 @@ class User extends AppModel {
  *
  * @var string
  */
-	public $displayField = 'name';
+	public $displayField = 'username';
 
-	public $virtualFields = array(
-		'name' => 'CONCAT(User.first_name, " ", User.last_name)'
-	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 

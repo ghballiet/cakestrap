@@ -11,9 +11,12 @@
       <li class="nav-header"><?= __('Users'); ?></li>
       <li><?= $this->Html->link(__('List Users'), array('controller'=>'users', 'action'=>'index')) ?></li>
       <li><?= $this->Html->link(__('New User'), array('controller'=>'users', 'action'=> 'add')) ?></li>
+      <li class="nav-header"><?= __('Ingredients'); ?></li>
+      <li><?= $this->Html->link(__('List Ingredients'), array('controller'=>'ingredients', 'action'=>'index')) ?></li>
+      <li><?= $this->Html->link(__('New Ingredient'), array('controller'=>'ingredients', 'action'=> 'add')) ?></li>
     </ul>
   </div>
   <div class="span9">
-<?= $this->Form->create('Recipe') ?><?= $this->Form->input('id') ?><?= $this->Form->input('name', array('autofocus'=>'true')); ?><?= $this->Form->input('description') ?><?= $this->Form->input('public') ?><?= $this->Form->input('user_id') ?><?= $this->Form->end(__('Submit')) ?>    
+<?= $this->Form->create('Recipe') ?><?= $this->Form->input('id') ?><?= $this->Form->input('name', array('autofocus'=>'true')); ?><?= $this->Form->input('description') ?><?= $this->Form->input('user_id') ?><?= $this->Form->input('public') ?><?= $this->Form->input('Ingredient') ?><?= $this->Form->end(__('Submit')) ?>    
   </div>
 </div>

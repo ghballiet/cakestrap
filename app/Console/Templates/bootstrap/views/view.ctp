@@ -102,7 +102,7 @@
 <? endforeach; ?>
         <th class="actions"><?= "<?= __('Actions') ?>" ?></th>
       </tr>
-<? if($type == 'hasMany' || $type == 'manyToMany'): ?>
+<? if($type == 'hasMany' || $type == 'hasAndBelongsToMany'): ?>
 <?= "<? foreach(\${$singularVar}['{$alias}'] as \${$osv}): ?>\n" ?>
 	<tr>
 <? foreach($details['fields'] as $field): ?>

@@ -48,7 +48,8 @@ class RecipesController extends AppController {
 			}
 		}
 		$users = $this->Recipe->User->find('list');
-		$this->set(compact('users'));
+		$ingredients = $this->Recipe->Ingredient->find('list');
+		$this->set(compact('users', 'ingredients'));
 	}
 
 /**
@@ -74,7 +75,8 @@ class RecipesController extends AppController {
 			$this->request->data = $this->Recipe->read(null, $id);
 		}
 		$users = $this->Recipe->User->find('list');
-		$this->set(compact('users'));
+		$ingredients = $this->Recipe->Ingredient->find('list');
+		$this->set(compact('users', 'ingredients'));
 	}
 
 /**
@@ -142,7 +144,8 @@ class RecipesController extends AppController {
 			}
 		}
 		$users = $this->Recipe->User->find('list');
-		$this->set(compact('users'));
+		$ingredients = $this->Recipe->Ingredient->find('list');
+		$this->set(compact('users', 'ingredients'));
 	}
 
 /**
@@ -168,7 +171,8 @@ class RecipesController extends AppController {
 			$this->request->data = $this->Recipe->read(null, $id);
 		}
 		$users = $this->Recipe->User->find('list');
-		$this->set(compact('users'));
+		$ingredients = $this->Recipe->Ingredient->find('list');
+		$this->set(compact('users', 'ingredients'));
 	}
 
 /**

@@ -14,6 +14,9 @@
       <li class="nav-header"><?= __('users') ?></li>
       <li><?= $this->Html->link(__('List Users'), array('controller'=>'users', 'action'=>'index')) ?></li>
       <li><?= $this->Html->link(__('New User'), array('controller'=>'users', 'action'=>'add')) ?></li>
+      <li class="nav-header"><?= __('ingredients') ?></li>
+      <li><?= $this->Html->link(__('List Ingredients'), array('controller'=>'ingredients', 'action'=>'index')) ?></li>
+      <li><?= $this->Html->link(__('New Ingredient'), array('controller'=>'ingredients', 'action'=>'add')) ?></li>
     </ul>
   </div>
   <div class="span9">
@@ -31,12 +34,12 @@
         <td><?= h($recipe['Recipe']['description']) ?></td>
       </tr>      
       <tr>      
-        <th><?= __('Public') ?></th>
-        <td><?= h($recipe['Recipe']['public']) ?></td>
+        <th><?= __('User') ?></th>
+        <td><?= $this->Html->link($recipe['User']['first_name'], array('controller'=>'users', 'action'=>'view', $recipe['User']['id'])) ?></td>
       </tr>      
       <tr>      
-        <th><?= __('User') ?></th>
-        <td><?= $this->Html->link($recipe['User']['name'], array('controller'=>'users', 'action'=>'view', $recipe['User']['id'])) ?></td>
+        <th><?= __('Public') ?></th>
+        <td><?= h($recipe['Recipe']['public']) ?></td>
       </tr>      
       <tr>      
         <th><?= __('Modified') ?></th>
@@ -50,6 +53,7 @@
 
 <ul class="nav nav-tabs">
   <li class="active"><a href="#users" data-toggle="tab"><?= __('Related Users') ?></a></li>
+  <li><a href="#ingredients" data-toggle="tab"><?= __('Related Ingredients') ?></a></li>  
 </ul>
 
 <div class="tab-content">
@@ -95,6 +99,43 @@
 <? else: ?>
     <div class="alert alert-info">
       There are no <strong><?= __('Users') ?></strong> related to this <strong><?= __('Recipe') ?></strong>.
+    </div>
+<? endif; ?>
+  </div>
+  <div class="tab-pane" id="ingredients">
+<? if(!empty($recipe['Ingredient'])): ?>
+    <table class="table table-condensed">
+      <tr>
+        <th><?= __('Id') ?></th>
+        <th><?= __('Name') ?></th>
+        <th><?= __('Description') ?></th>
+        <th><?= __('Modified') ?></th>
+        <th class="actions"><?= __('Actions') ?></th>
+      </tr>
+<? foreach($recipe['Ingredient'] as $ingredient): ?>
+	<tr>
+      <td><?= h($ingredient['id']) ?></td>
+      <td><?= h($ingredient['name']) ?></td>
+      <td><?= h($ingredient['description']) ?></td>
+      <td><?= h($ingredient['modified']) ?></td>
+      <td class="actions">
+        <div class="btn-group">
+          <a class="btn btn-mini dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+            Action <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu pull-right">
+            <li><?= $this->Html->link(__('View'), array('controller'=>'ingredients', 'action'=>'view', $ingredient['id'])) ?></li>
+            <li><?= $this->Html->link(__('Edit'), array('controller'=>'ingredients', 'action'=>'edit', $ingredient['id'])) ?></li>
+            <li><?= $this->Form->postLink(__('Delete'), array('controller'=>'ingredients', 'action'=>'delete', $ingredient['id']), null, __('Are you sure?')) ?></li>
+          </ul>
+        </div>
+      </td>
+	</tr>
+<? endforeach; ?>
+    </table>
+<? else: ?>
+    <div class="alert alert-info">
+      There are no <strong><?= __('Ingredients') ?></strong> related to this <strong><?= __('Recipe') ?></strong>.
     </div>
 <? endif; ?>
   </div>

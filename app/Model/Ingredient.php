@@ -1,12 +1,11 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * Recipe Model
+ * Ingredient Model
  *
- * @property User $User
- * @property Ingredient $Ingredient
+ * @property Recipe $Recipe
  */
-class Recipe extends AppModel {
+class Ingredient extends AppModel {
 
 /**
  * Display field
@@ -26,31 +25,16 @@ class Recipe extends AppModel {
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
 /**
- * belongsTo associations
- *
- * @var array
- */
-	public $belongsTo = array(
-		'User' => array(
-			'className' => 'User',
-			'foreignKey' => 'user_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
-	);
-
-/**
  * hasAndBelongsToMany associations
  *
  * @var array
  */
 	public $hasAndBelongsToMany = array(
-		'Ingredient' => array(
-			'className' => 'Ingredient',
+		'Recipe' => array(
+			'className' => 'Recipe',
 			'joinTable' => 'ingredients_recipes',
-			'foreignKey' => 'recipe_id',
-			'associationForeignKey' => 'ingredient_id',
+			'foreignKey' => 'ingredient_id',
+			'associationForeignKey' => 'recipe_id',
 			'unique' => 'keepExisting',
 			'conditions' => '',
 			'fields' => '',

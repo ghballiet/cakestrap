@@ -22,7 +22,7 @@ create table if not exists recipes (
 create table if not exists ingredients (
   id varchar(36) primary key,
   name tinytext,
-  description longtext
+  description longtext,
   modified datetime
 );
 

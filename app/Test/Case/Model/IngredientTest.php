@@ -1,11 +1,11 @@
 <?php
-App::uses('User', 'Model');
+App::uses('Ingredient', 'Model');
 
 /**
- * User Test Case
+ * Ingredient Test Case
  *
  */
-class UserTest extends CakeTestCase {
+class IngredientTest extends CakeTestCase {
 
 /**
  * Fixtures
@@ -13,9 +13,8 @@ class UserTest extends CakeTestCase {
  * @var array
  */
 	public $fixtures = array(
-		'app.user',
-		'app.recipe',
 		'app.ingredient',
+		'app.recipe',
 		'app.ingredients_recipe'
 	);
 
@@ -26,7 +25,7 @@ class UserTest extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->User = ClassRegistry::init('User');
+		$this->Ingredient = ClassRegistry::init('Ingredient');
 	}
 
 /**
@@ -35,7 +34,7 @@ class UserTest extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->User);
+		unset($this->Ingredient);
 
 		parent::tearDown();
 	}

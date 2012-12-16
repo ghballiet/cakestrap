@@ -1,11 +1,11 @@
 <?php
-App::uses('RecipesController', 'Controller');
+App::uses('IngredientsController', 'Controller');
 
 /**
- * RecipesController Test Case
+ * IngredientsController Test Case
  *
  */
-class RecipesControllerTest extends ControllerTestCase {
+class IngredientsControllerTest extends ControllerTestCase {
 
 /**
  * Fixtures
@@ -13,9 +13,9 @@ class RecipesControllerTest extends ControllerTestCase {
  * @var array
  */
 	public $fixtures = array(
+		'app.ingredient',
 		'app.recipe',
 		'app.user',
-		'app.ingredient',
 		'app.ingredients_recipe'
 	);
 

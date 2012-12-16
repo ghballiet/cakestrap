@@ -1,16 +1,16 @@
 
 <div class="page-header">
-  <h2><?= __('User'); ?></h2>
+  <h2><?= __('Ingredient'); ?></h2>
 </div>
 
 <div class="row">
   <div class="span3">
     <ul class="well nav nav-list">
-      <li class="nav-header"><?= __('User') ?> Actions</li>
-      <li><?= $this->Html->link(__('Edit User'), array('action'=>'edit', $user['User']['id'])) ?></li>
-      <li><?= $this->Form->postLink(__('Delete User'), array('action'=>'delete', $user['User']['id']), null, __('Are you sure?')) ?></li>
-      <li><?= $this->Html->link(__('List Users'), array('action'=>'index')) ?></li>
-      <li><?= $this->Html->link(__('New User'), array('action'=>'add')) ?></li>
+      <li class="nav-header"><?= __('Ingredient') ?> Actions</li>
+      <li><?= $this->Html->link(__('Edit Ingredient'), array('action'=>'edit', $ingredient['Ingredient']['id'])) ?></li>
+      <li><?= $this->Form->postLink(__('Delete Ingredient'), array('action'=>'delete', $ingredient['Ingredient']['id']), null, __('Are you sure?')) ?></li>
+      <li><?= $this->Html->link(__('List Ingredients'), array('action'=>'index')) ?></li>
+      <li><?= $this->Html->link(__('New Ingredient'), array('action'=>'add')) ?></li>
       <li class="nav-header"><?= __('recipes') ?></li>
       <li><?= $this->Html->link(__('List Recipes'), array('controller'=>'recipes', 'action'=>'index')) ?></li>
       <li><?= $this->Html->link(__('New Recipe'), array('controller'=>'recipes', 'action'=>'add')) ?></li>
@@ -20,39 +20,19 @@
     <table class="table table-condensed">
       <tr>      
         <th><?= __('Id') ?></th>
-        <td><?= h($user['User']['id']) ?></td>
+        <td><?= h($ingredient['Ingredient']['id']) ?></td>
       </tr>      
       <tr>      
-        <th><?= __('First Name') ?></th>
-        <td><?= h($user['User']['first_name']) ?></td>
+        <th><?= __('Name') ?></th>
+        <td><?= h($ingredient['Ingredient']['name']) ?></td>
       </tr>      
       <tr>      
-        <th><?= __('Last Name') ?></th>
-        <td><?= h($user['User']['last_name']) ?></td>
-      </tr>      
-      <tr>      
-        <th><?= __('Username') ?></th>
-        <td><?= h($user['User']['username']) ?></td>
-      </tr>      
-      <tr>      
-        <th><?= __('Email') ?></th>
-        <td><?= h($user['User']['email']) ?></td>
-      </tr>      
-      <tr>      
-        <th><?= __('Password') ?></th>
-        <td><?= h($user['User']['password']) ?></td>
-      </tr>      
-      <tr>      
-        <th><?= __('Admin') ?></th>
-        <td><?= h($user['User']['admin']) ?></td>
-      </tr>      
-      <tr>      
-        <th><?= __('Verified') ?></th>
-        <td><?= h($user['User']['verified']) ?></td>
+        <th><?= __('Description') ?></th>
+        <td><?= h($ingredient['Ingredient']['description']) ?></td>
       </tr>      
       <tr>      
         <th><?= __('Modified') ?></th>
-        <td><?= h($user['User']['modified']) ?></td>
+        <td><?= h($ingredient['Ingredient']['modified']) ?></td>
       </tr>      
     </table>
   </div>
@@ -66,7 +46,7 @@
 
 <div class="tab-content">
   <div class="tab-pane active" id="recipes">
-<? if(!empty($user['Recipe'])): ?>
+<? if(!empty($ingredient['Recipe'])): ?>
     <table class="table table-condensed">
       <tr>
         <th><?= __('Id') ?></th>
@@ -77,7 +57,7 @@
         <th><?= __('Modified') ?></th>
         <th class="actions"><?= __('Actions') ?></th>
       </tr>
-<? foreach($user['Recipe'] as $recipe): ?>
+<? foreach($ingredient['Recipe'] as $recipe): ?>
 	<tr>
       <td><?= h($recipe['id']) ?></td>
       <td><?= h($recipe['name']) ?></td>
@@ -102,7 +82,7 @@
     </table>
 <? else: ?>
     <div class="alert alert-info">
-      There are no <strong><?= __('Recipes') ?></strong> related to this <strong><?= __('User') ?></strong>.
+      There are no <strong><?= __('Recipes') ?></strong> related to this <strong><?= __('Ingredient') ?></strong>.
     </div>
 <? endif; ?>
   </div>

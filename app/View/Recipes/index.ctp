@@ -10,6 +10,9 @@
 	  <li class="nav-header">Users</li>
 	  <li><?= $this->Html->link(__('List Users'), array('controller'=>'users', 'action'=>'index')) ?></li>
 	  <li><?= $this->Html->link(__('New User'), array('controller'=>'users', 'action'=>'add')) ?></li>
+	  <li class="nav-header">Ingredients</li>
+	  <li><?= $this->Html->link(__('List Ingredients'), array('controller'=>'ingredients', 'action'=>'index')) ?></li>
+	  <li><?= $this->Html->link(__('New Ingredient'), array('controller'=>'ingredients', 'action'=>'add')) ?></li>
 	</ul>
   </div>
   <div class="span9">
@@ -18,8 +21,8 @@
         <th><?= $this->Paginator->sort('id') ?></th>
         <th><?= $this->Paginator->sort('name') ?></th>
         <th><?= $this->Paginator->sort('description') ?></th>
-        <th><?= $this->Paginator->sort('public') ?></th>
         <th><?= $this->Paginator->sort('user_id') ?></th>
+        <th><?= $this->Paginator->sort('public') ?></th>
         <th><?= $this->Paginator->sort('modified') ?></th>
         <th class="actions"><?= __('Actions') ?></th>
 	  </tr>
@@ -28,8 +31,8 @@
         <td><?= h($recipe['Recipe']['id']) ?></td>
         <td><?= h($recipe['Recipe']['name']) ?></td>
         <td><?= h($recipe['Recipe']['description']) ?></td>
+        <td><?= $this->Html->link($recipe['User']['first_name'], array('controller'=>'users', 'action'=>'view', $recipe['User']['id'])) ?></td>
         <td><?= h($recipe['Recipe']['public']) ?></td>
-        <td><?= $this->Html->link($recipe['User']['name'], array('controller'=>'users', 'action'=>'view', $recipe['User']['id'])) ?></td>
         <td><?= h($recipe['Recipe']['modified']) ?></td>
         <td class="actions">
 		  <div class="btn-group">
