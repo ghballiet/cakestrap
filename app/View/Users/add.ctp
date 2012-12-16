@@ -1,25 +1,18 @@
-<div class="users form">
-<?php echo $this->Form->create('User'); ?>
-	<fieldset>
-		<legend><?php echo __('Add User'); ?></legend>
-	<?php
-		echo $this->Form->input('first_name');
-		echo $this->Form->input('last_name');
-		echo $this->Form->input('username');
-		echo $this->Form->input('email');
-		echo $this->Form->input('password');
-		echo $this->Form->input('admin');
-		echo $this->Form->input('verified');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
+<div class="page-header">
+  <h2><?= __('Add User') ?></h2>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
 
-		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index')); ?></li>
-		<li><?php echo $this->Html->link(__('List Recipes'), array('controller' => 'recipes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Recipe'), array('controller' => 'recipes', 'action' => 'add')); ?> </li>
-	</ul>
+<div class="row">
+  <div class="span3">
+    <ul class="well nav nav-list">
+      <li class="nav-header">Actions</li>
+      <li><?= $this->Html->link(__('List Users'), array('action'=>'index')) ?></li>
+      <li class="nav-header"><?= __('Recipes'); ?></li>
+      <li><?= $this->Html->link(__('List Recipes'), array('controller'=>'recipes', 'action'=>'index')) ?></li>
+      <li><?= $this->Html->link(__('New Recipe'), array('controller'=>'recipes', 'action'=> 'add')) ?></li>
+    </ul>
+  </div>
+  <div class="span9">
+<?= $this->Form->create('User') ?><?= $this->Form->input('first_name', array('autofocus'=>'true')); ?><?= $this->Form->input('last_name') ?><?= $this->Form->input('username') ?><?= $this->Form->input('email') ?><?= $this->Form->input('password') ?><?= $this->Form->input('admin') ?><?= $this->Form->input('verified') ?><?= $this->Form->end(__('Submit')) ?>    
+  </div>
 </div>
