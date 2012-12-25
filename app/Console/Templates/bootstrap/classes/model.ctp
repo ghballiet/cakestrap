@@ -1,4 +1,4 @@
-<?= "<?\nApp:uses('{$plugin}AppModel', '{$pluginPath}Model');\n" ?>
+<?= "<?\nApp::uses('{$plugin}AppModel', '{$pluginPath}Model');\n" ?>
 
 class <?= $name ?> extends <?= $plugin ?>AppModel {
 

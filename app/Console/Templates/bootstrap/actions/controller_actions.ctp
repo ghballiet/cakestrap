@@ -1,8 +1,10 @@
 // controller action templates
 
+<? if(!$admin): ?>
 	public function beforeFilter() {
 		parent::beforeFilter();
 	}
+<? endif; ?>
 
 	public function <?= $admin ?>index() {
 		$this-><?= $currentModelName ?>->recursive = 0;
@@ -116,7 +118,7 @@
 		$this->redirect(array('action' => 'index'));
 	}
 
-<? if($currentModelName == 'User'): ?>
+<? if($currentModelName == 'User' && !$admin): ?>
 	public function login() {
 		if($this->request->is('post')) {
 			if($this->Auth->login()) {
