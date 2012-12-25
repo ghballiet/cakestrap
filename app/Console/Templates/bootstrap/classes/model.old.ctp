@@ -1,32 +1,80 @@
-<?= "<?\nApp:uses('{$plugin}AppModel', '{$pluginPath}Model');\n" ?>
+<?php
+/**
+ * Model template file.
+ *
+ * Used by bake to create new Model files.
+ *
+ * PHP 5
+ *
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
+ * @package       Cake.Console.Templates.default.classes
+ * @since         CakePHP(tm) v 1.3
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
+ */
 
-class <?= $name ?> extends <?= $plugin ?>AppModel {
+echo "<?php\n";
+echo "App::uses('{$plugin}AppModel', '{$pluginPath}Model');\n";
+?>
+/**
+ * <?php echo $name ?> Model
+ *
+<?php
+foreach (array('hasOne', 'belongsTo', 'hasMany', 'hasAndBelongsToMany') as $assocType) {
+	if (!empty($associations[$assocType])) {
+		foreach ($associations[$assocType] as $relation) {
+			echo " * @property {$relation['className']} \${$relation['alias']}\n";
+		}
+	}
+}
+?>
+ */
+class <?php echo $name ?> extends <?php echo $plugin; ?>AppModel {
 
-<? if ($useDbConfig != 'default'): ?>
-	public $useDbConfig = '<?= $useDbConfig ?>';
+<?php if ($useDbConfig != 'default'): ?>
+/**
+ * Use database config
+ *
+ * @var string
+ */
+	public $useDbConfig = '<?php echo $useDbConfig; ?>';
 
-<?
-endif;
+<?php endif;
 
 if ($useTable && $useTable !== Inflector::tableize($name)):
-	$table = "'$useTable'";
-	echo "\tpublic \$useTable = $table;\n\n";
+    $table = "'$useTable'";
+    echo "/**\n * Use table\n *\n * @var mixed False or table name\n */\n";
+    echo "\tpublic \$useTable = $table;\n\n";
 endif;
 
 if ($primaryKey !== 'id'): ?>
+/**
+ * Primary key field
+ *
+ * @var string
+ */
+	public $primaryKey = '<?php echo $primaryKey; ?>';
 
-	public $primaryKey = '<?= $primaryKey ?>';
-
-<?
-endif;
+<?php endif;
 
 if ($displayField): ?>
-	public $displayField = '<?= $displayField ?>';
+/**
+ * Display field
+ *
+ * @var string
+ */
+	public $displayField = '<?php echo $displayField; ?>';
 
-<?
-endif;
+<?php endif;
 
 if (!empty($validate)):
+	echo "/**\n * Validation rules\n *\n * @var array\n */\n";
 	echo "\tpublic \$validate = array(\n";
 	foreach ($validate as $field => $validations):
 		echo "\t\t'$field' => array(\n";
@@ -49,9 +97,8 @@ foreach ($associations as $assoc):
 	if (!empty($assoc)):
 ?>
 
-	// the associations below have been created with all possible
-	// keys, those that are not needed can be removed
-<?
+	//The Associations below have been created with all possible keys, those that are not needed can be removed
+<?php
 		break;
 	endif;
 endforeach;
@@ -59,6 +106,7 @@ endforeach;
 foreach (array('hasOne', 'belongsTo') as $assocType):
 	if (!empty($associations[$assocType])):
 		$typeCount = count($associations[$assocType]);
+		echo "\n/**\n * $assocType associations\n *\n * @var array\n */";
 		echo "\n\tpublic \$$assocType = array(";
 		foreach ($associations[$assocType] as $i => $relation):
 			$out = "\n\t\t'{$relation['alias']}' => array(\n";
@@ -79,6 +127,7 @@ endforeach;
 
 if (!empty($associations['hasMany'])):
 	$belongsToCount = count($associations['hasMany']);
+	echo "\n/**\n * hasMany associations\n *\n * @var array\n */";
 	echo "\n\tpublic \$hasMany = array(";
 	foreach ($associations['hasMany'] as $i => $relation):
 		$out = "\n\t\t'{$relation['alias']}' => array(\n";
@@ -104,6 +153,7 @@ endif;
 
 if (!empty($associations['hasAndBelongsToMany'])):
 	$habtmCount = count($associations['hasAndBelongsToMany']);
+	echo "\n/**\n * hasAndBelongsToMany associations\n *\n * @var array\n */";
 	echo "\n\tpublic \$hasAndBelongsToMany = array(";
 	foreach ($associations['hasAndBelongsToMany'] as $i => $relation):
 		$out = "\n\t\t'{$relation['alias']}' => array(\n";
@@ -129,12 +179,4 @@ if (!empty($associations['hasAndBelongsToMany'])):
 	echo "\n\t);\n\n";
 endif;
 ?>
-
-<? if($name == 'User'): ?>
-	public function beforeSave($options = array()) {
-		$this->data['User']['password'] =
-			AuthComponent::password($this->data['User']['password']);
-		return true;
-	}
-<? endif; ?>
 }

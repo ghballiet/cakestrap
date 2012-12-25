@@ -32,5 +32,3 @@
 --   recipe_id varchar(36),
 --   modified datetime
 -- );
-
--- new database schema for letter stuff
