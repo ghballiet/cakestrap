@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h2><?= __('Add User') ?></h2>
+  <h2><?= __('Admin Add User') ?></h2>
 </div>
 
 <div class="row">
@@ -7,6 +7,9 @@
 	<ul class="well nav nav-list">
 	  <li class="nav-header">Actions</li>
 	  <li><?= $this->Html->link(__('List Users'), array('action'=>'index')) ?></li>
+	  <li class="nav-header"><?= __('Recipes'); ?></li>
+	  <li><?= $this->Html->link(__('List Recipes'), array('controller'=>'recipes', 'action'=>'index')) ?></li>
+	  <li><?= $this->Html->link(__('New Recipe'), array('controller'=>'recipes', 'action'=> 'add')) ?></li>
 	</ul>
   </div>
   <div class="span9">
@@ -16,7 +19,7 @@
     <?= $this->Form->input('email') ?>
     <?= $this->Form->input('username') ?>
     <?= $this->Form->input('password') ?>
-    <?= $this->Form->input('admin') ?>
+    <?= $this->Form->input('role') ?>
     <?= $this->Form->end(__('Submit')) ?>
   </div>
 </div>

@@ -14,9 +14,7 @@ class UsersControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'app.user',
-		'app.recipe',
-		'app.ingredient',
-		'app.ingredients_recipe'
+		'app.recipe'
 	);
 
 /**
@@ -57,6 +55,30 @@ class UsersControllerTest extends ControllerTestCase {
  * @return void
  */
 	public function testDelete() {
+	}
+
+/**
+ * testLogin method
+ *
+ * @return void
+ */
+	public function testLogin() {
+	}
+
+/**
+ * testRegister method
+ *
+ * @return void
+ */
+	public function testRegister() {
+	}
+
+/**
+ * testLogout method
+ *
+ * @return void
+ */
+	public function testLogout() {
 	}
 
 /**

@@ -14,9 +14,7 @@ class RecipesControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'app.recipe',
-		'app.user',
-		'app.ingredient',
-		'app.ingredients_recipe'
+		'app.user'
 	);
 
 /**

@@ -1,5 +1,3 @@
-// controller action templates
-
 <? if(!$admin): ?>
 	public function beforeFilter() {
 		parent::beforeFilter();
@@ -130,7 +128,7 @@
 <? if($wannaUseSession): ?>
 				$this->Session->setFlash(__('Incorrect username or password.'), 'error');
 <? else: ?>
-				$this->flash(__('Incorrect username or password.'), array('action'=>'login'));
+				$this->flash(__('Incorrect username or password.'), array('action'=>"<?= ${admin} ?>login"));
 <? endif; ?>
 			}
 		}

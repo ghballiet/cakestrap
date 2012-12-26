@@ -7,7 +7,7 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
-	public function beforeFilter() {
+public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow(array('register'));
 	}
@@ -98,7 +98,6 @@ class UsersController extends AppController {
 	public function logout() {
 		$this->redirect($this->Auth->logout());
 	}
-// controller action templates
 
 
 	public function admin_index() {

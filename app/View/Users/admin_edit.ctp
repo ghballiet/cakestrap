@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h2><?= __('Edit User') ?></h2>
+  <h2><?= __('Admin Edit User') ?></h2>
 </div>
 
 <div class="row">
@@ -8,6 +8,9 @@
 	  <li class="nav-header">Actions</li>
 	  <li><?= $this->Form->postLink(__('Delete'), array('action'=>'delete', $this->Form->value('User.id')), null, __('Are you sure?')) ?></li>
 	  <li><?= $this->Html->link(__('List Users'), array('action'=>'index')) ?></li>
+	  <li class="nav-header"><?= __('Recipes'); ?></li>
+	  <li><?= $this->Html->link(__('List Recipes'), array('controller'=>'recipes', 'action'=>'index')) ?></li>
+	  <li><?= $this->Html->link(__('New Recipe'), array('controller'=>'recipes', 'action'=> 'add')) ?></li>
 	</ul>
   </div>
   <div class="span9">
@@ -18,7 +21,7 @@
     <?= $this->Form->input('email') ?>
     <?= $this->Form->input('username') ?>
     <?= $this->Form->input('password') ?>
-    <?= $this->Form->input('admin') ?>
+    <?= $this->Form->input('role') ?>
     <?= $this->Form->end(__('Submit')) ?>
   </div>
 </div>

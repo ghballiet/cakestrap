@@ -5,6 +5,15 @@ create table if not exists users(
   email tinytext,
   username tinytext,
   password tinytext,
-  admin boolean,
+  role tinytext,
+  modified datetime
+);
+
+create table if not exists recipes(
+  id varchar(36) primary key,
+  name tinytext,
+  description text,
+  user_id varchar(36),
+  public boolean,
   modified datetime
 );

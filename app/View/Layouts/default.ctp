@@ -19,6 +19,16 @@
 <? if(!isset($user)): ?>
             <li><?= $this->Html->link(__('Sign Up'), array('controller'=>'users', 'action'=>'register')) ?></li>
             <li><?= $this->Html->link(__('Login'), array('controller'=>'users', 'action'=>'login')) ?></li>
+<? else: ?>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <?= $user['username'] ?>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><?= $this->Html->link(__('Logout'), array('controller'=>'users', 'action'=>'logout')) ?></li>
+              </ul>
+            </li>
 <? endif; ?>
           </ul>
 		  </div>
