@@ -4,6 +4,7 @@ create table if not exists users(
   last_name tinytext,
   email tinytext,
   username tinytext,
+  password tinytext,
   admin boolean,
   modified datetime
 );

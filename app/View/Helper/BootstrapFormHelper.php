@@ -20,6 +20,18 @@ class BootstrapFormHelper extends FormHelper {
 		return parent::create($model, $options);
 	}
 
+	public function error($field, $text = null, $options = array()) {
+		// extends the default error message stuff
+		$options = array_merge(
+			array(
+				'class' => 'help-inline',
+				'wrap' => 'span'
+			),
+			$options
+		);
+		return parent::error($field, $text, $options);
+	}
+
 	public function input($field_name, $options = array()) {
 		$this->setEntity($field_name);
 		$model_key = $this->model();
@@ -32,6 +44,9 @@ class BootstrapFormHelper extends FormHelper {
 				),
 				'label' => array(
 					'class' => 'control-label'
+				),
+				'format' => array(
+					'before', 'label', 'between', 'input', 'after'
 				)
 			),
 			$options
@@ -41,7 +56,7 @@ class BootstrapFormHelper extends FormHelper {
 		if(!isset($options['type'])) {
 			$def = $this->_introspectModel($this->model(), 'fields', $this->field());
 			if(isset($this->map[$def['type']]) && $this->map[$def['type']] == 'checkbox') {
-				$options['format'] = array('before', 'input', 'between', 'after', 'error');
+				$options['format'] = array('before', 'input', 'between', 'after');
 			}
 		}
 
@@ -50,7 +65,9 @@ class BootstrapFormHelper extends FormHelper {
 
 	public function textarea($field_name, $options = array()) {
 		// extends the textarea functionality
-		return $this->Html->div('controls', parent::textarea($field_name, $options));
+		$input = parent::textarea($field_name, $options);
+		$error = $this->error($field_name, $this->_extractOption('error', $options));
+		return $this->Html->div('controls', $input . $error);
 	}
 
 	public function checkbox($field_name, $options = array()) {
@@ -60,7 +77,8 @@ class BootstrapFormHelper extends FormHelper {
 			'type'=>'checkbox'));
 		$html = parent::checkbox($field_name, $options);
 		$html = preg_replace('/>(\w*)<\/label/', sprintf('>%s $1</label', $html), $label);
-		$html = $this->Html->div('controls', $html);
+		$error = $this->error($field_name, $this->_extractOption('error', $options));
+		$html = $this->Html->div('controls', $html . $error);
 		return $html;
 	}
 
@@ -68,17 +86,23 @@ class BootstrapFormHelper extends FormHelper {
 		// extends the default text box
 		if(in_array($field_name, array('email', 'e-mail', 'e_mail')))
 			$options = array_merge(array('type'=>'email'), $options);
-		return $this->Html->div('controls', parent::text($field_name, $options));
+		$input = parent::text($field_name, $options);
+		$error = $this->error($field_name, $this->_extractOption('error', $options));
+		return $this->Html->div('controls', $input . $error);
 	}
 
 	public function password($field_name, $options = array()) {
 		// extends the default password box
-		return $this->Html->div('controls', parent::password($field_name, $options));
+		$input = parent::password($field_name, $options);
+		$error = $this->error($field_name, $this->_extractOption('error', $options));
+		return $this->Html->div('controls', $input . $error);
 	}
 
 	public function select($field_name, $options = array(), $attributes = array()) {
 		// extends the default select box
-		return $this->Html->div('controls', parent::select($field_name, $options, $attributes));
+		$input = parent::select($field_name, $options, $attributes);
+		$error = $this->error($field_name, $this->_extractOption('error', $options));
+		return $this->Html->div('controls', $input . $error);
 	}
 
 	public function submit($caption = null, $options = array()) {

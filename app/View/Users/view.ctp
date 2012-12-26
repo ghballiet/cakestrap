@@ -36,6 +36,10 @@
         <td><?= h($user['User']['username']) ?></td>
       </tr>      
       <tr>      
+        <th><?= __('Password') ?></th>
+        <td><?= h($user['User']['password']) ?></td>
+      </tr>      
+      <tr>      
         <th><?= __('Admin') ?></th>
         <td><?= h($user['User']['admin']) ?></td>
       </tr>      

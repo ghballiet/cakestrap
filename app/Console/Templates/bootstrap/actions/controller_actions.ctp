@@ -3,6 +3,9 @@
 <? if(!$admin): ?>
 	public function beforeFilter() {
 		parent::beforeFilter();
+<? if($currentModelName == 'User'): ?>
+		$this->Auth->allow(array('register'));
+<? endif; ?>
 	}
 <? endif; ?>
 

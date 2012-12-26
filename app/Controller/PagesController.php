@@ -38,6 +38,14 @@ class PagesController extends AppController {
  */
 	public $name = 'Pages';
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('home');
+	}
+
+	public function home() {
+	}
+
 /**
  * This controller does not use a model
  *

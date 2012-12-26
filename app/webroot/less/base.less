@@ -1,8 +1,37 @@
 @import "bootstrap";
 
-body {
+.tab-content { overflow: visible; }
+
+.main-content {
   padding-top: 4 * @gridGutterWidth;
   margin-bottom: 2 * @gridGutterWidth;
 }
 
-.tab-content { overflow: visible; }
+// sticky footer stuff
+html, body { height: 100%; }
+
+@footer-height: 60px;
+
+.wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  // negative indent footer by its height
+  margin: 0 auto (-1 * @footer-height);
+}
+
+.push, .footer {
+  // fixed height of footer goes here
+  height: @footer-height;
+}
+
+.footer {
+  text-align: center;
+  background: @grayLighter;
+  border-top: solid 1px darken(@grayLighter, 10);
+  .container { padding-top: @gridGutterWidth; }
+}
+
+.help-inline {
+  margin-left: .5 * @gridGutterWidth;
+}

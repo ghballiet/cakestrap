@@ -851,5 +851,10 @@ a.label:hover,a.badge:hover{color:#ffffff;text-decoration:none;cursor:pointer;}
 .show{display:block;}
 .invisible{visibility:hidden;}
 .affix{position:fixed;}
-body{padding-top:80px;margin-bottom:40px;}
 .tab-content{overflow:visible;}
+.main-content{padding-top:80px;margin-bottom:40px;}
+html,body{height:100%;}
+.wrap{min-height:100%;height:auto !important;height:100%;margin:0 auto -60px;}
+.push,.footer{height:60px;}
+.footer{text-align:center;background:#eeeeee;border-top:solid 1px #d5d5d5;}.footer .container{padding-top:20px;}
+.help-inline{margin-left:10px;}

@@ -1,28 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-<? echo $this->fetch('meta'); ?>
-	<title><? echo $title_for_layout; ?> | app</title>
+<?= $this->fetch('meta') ?>
+	<title><?= $title_for_layout ?> | app</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<meta name="description" content="">
 	<meta name="author" content="">
-<? echo $this->Html->css('base'); ?>
-<? echo $this->fetch('css'); ?>
+<?= $this->Html->css('base') ?>
+<?= $this->fetch('css') ?>
   </head>
   <body>
-	<div class="navbar navbar-fixed-top">
-	  <div class="navbar-inner">
-		<div class="container">
-		  <? echo $this->Html->link('app', '/', array('class'=>'brand')); ?>		 
-		</div>
+    <div class="wrap">
+	  <div class="navbar navbar-fixed-top">
+	    <div class="navbar-inner">
+		  <div class="container">
+		  <?= $this->Html->link('app', '/', array('class'=>'brand')) ?>
+          <ul class="nav pull-right">
+<? if(!isset($user)): ?>
+            <li><?= $this->Html->link(__('Sign Up'), array('controller'=>'users', 'action'=>'register')) ?></li>
+            <li><?= $this->Html->link(__('Login'), array('controller'=>'users', 'action'=>'login')) ?></li>
+<? endif; ?>
+          </ul>
+		  </div>
+	    </div>
 	  </div>
-	</div>
+    
+	  <div class="container main-content">
+<?= $this->Session->flash() ?>
+<?= $this->Session->flash('auth') ?>        
+<?= $this->fetch('content') ?>
+	  </div>
 
-	<div class="container">
-<? echo $this->Session->flash(); ?>
-<? echo $this->fetch('content'); ?>
-	</div>
-
+      <div class="push"></div>
+    </div>
+    
+    <div class="footer muted">
+      <div class="container">
+        Copyright &copy; Company. All Rights Reserved.
+      </div>
+    </div>
 <?
   echo $this->Html->script(array(
 	  'jquery.min', 'bootstrap-transition', 'bootstrap-alert',

@@ -12,7 +12,6 @@
   <div class="span9">
 <? if(!empty($users)): ?>    <table class="table table-condensed">
 	  <tr>
-        <th><?= $this->Paginator->sort('id') ?></th>
         <th><?= $this->Paginator->sort('first_name') ?></th>
         <th><?= $this->Paginator->sort('last_name') ?></th>
         <th><?= $this->Paginator->sort('email') ?></th>
@@ -23,7 +22,6 @@
 	  </tr>
 <? foreach($users as $user): ?>
       <tr>
-        <td><?= h($user['User']['id']) ?></td>
         <td><?= h($user['User']['first_name']) ?></td>
         <td><?= h($user['User']['last_name']) ?></td>
         <td><?= h($user['User']['email']) ?></td>

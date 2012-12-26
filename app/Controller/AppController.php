@@ -33,11 +33,25 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	public $components = array(
-		'Auth'
+		'Session',
+		'Auth' => array(
+			'authorize' => 'controller'
+		)
 	);
 
 	public $helpers = array(
 		'Form' => array('className' => 'BootstrapForm'),
 		'Session' => array('className' => 'BootstrapSession')
 	);
+
+	public function beforeFilter() {
+		if($this->Auth->user() != null)
+			$this->set('user', $this->Auth->user());
+	}
+
+	public function isAuthorized() {
+		if(!empty($this->params['prefix']) && $this->params['prefix'] == 'admin')
+			return (bool)($this->Auth->user('role') == 'admin');
+		return true;
+	}
 }

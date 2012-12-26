@@ -7,10 +7,9 @@ App::uses('AppController', 'Controller');
  */
 class UsersController extends AppController {
 
-// controller action templates
-
 	public function beforeFilter() {
 		parent::beforeFilter();
+		$this->Auth->allow(array('register'));
 	}
 
 	public function index() {
