@@ -76,7 +76,7 @@ class BootstrapFormHelper extends FormHelper {
 		$label = $this->_inputLabel($field_name, array('class'=>'checkbox'), array(
 			'type'=>'checkbox'));
 		$html = parent::checkbox($field_name, $options);
-		$html = preg_replace('/>(\w*)<\/label/', sprintf('>%s $1</label', $html), $label);
+		$html = preg_replace('/>([\w\s]*)<\/label/', sprintf('>%s $1</label', $html), $label);
 		$error = $this->error($field_name, $this->_extractOption('error', $options));
 		$html = $this->Html->div('controls', $html . $error);
 		return $html;
