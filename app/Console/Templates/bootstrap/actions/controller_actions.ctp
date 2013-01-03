@@ -1,12 +1,3 @@
-<? if(!$admin): ?>
-	public function beforeFilter() {
-		parent::beforeFilter();
-<? if($currentModelName == 'User'): ?>
-		$this->Auth->allow(array('register'));
-<? endif; ?>
-	}
-<? endif; ?>
-
 	public function <?= $admin ?>index() {
 		$this-><?= $currentModelName ?>->recursive = 0;
 		$this->set('<?= $pluralName ?>', $this->paginate());
@@ -118,44 +109,3 @@
 <? endif; ?>
 		$this->redirect(array('action' => 'index'));
 	}
-
-<? if($currentModelName == 'User' && !$admin): ?>
-	public function login() {
-		if($this->request->is('post')) {
-			if($this->Auth->login()) {
-				return $this->redirect($this->Auth->redirect());
-			} else {
-<? if($wannaUseSession): ?>
-				$this->Session->setFlash(__('Incorrect username or password.'), 'error');
-<? else: ?>
-				$this->flash(__('Incorrect username or password.'), array('action'=>"<?= ${admin} ?>login"));
-<? endif; ?>
-			}
-		}
-	}
-
-	public function register() {
-		if($this->request->is('post')) {
-			if($this->User->save($this->request->data)) {
-<? if($wannaUseSession): ?>
-				$this->Session->setFlash(__('Thank you for registering.'), 'success');
-<? else: ?>
-				$this->flash(__('Thank you for registering.'), array('action'=>'login'));
-<? endif; ?>
-				$this->redirect(array('action'=>'login'));
-			} else {
-<? if($wannaUseSession): ?>
-				$this->Session->setFlash(__('Something went wrong. Please ' .
-											'verify your information below and ' .
-											'try again.'), 'error');
-<? else: ?>
-				$this->flash(__('Something went wrong.'), array('action'=>'register'));
-<? endif; ?>
-			}
-		}
-	}
-
-	public function logout() {
-		$this->redirect($this->Auth->logout());
-	}
-<? endif; ?>

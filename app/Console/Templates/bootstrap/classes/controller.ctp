@@ -1,4 +1,4 @@
-<?php
+<?
 /**
  * Controller bake template file
  *
@@ -49,33 +49,71 @@ class <?php echo $controllerName; ?>Controller extends <?php echo $plugin; ?>App
 
 <?php else:
 
-    if (count($helpers)):
-        echo "/**\n * Helpers\n *\n * @var array\n */\n";
-        echo "\tpublic \$helpers = array(";
-        for ($i = 0, $len = count($helpers); $i < $len; $i++):
-            if ($i != $len - 1):
-                echo "'" . Inflector::camelize($helpers[$i]) . "', ";
-            else:
-                echo "'" . Inflector::camelize($helpers[$i]) . "'";
-            endif;
-        endfor;
-        echo ");\n\n";
-    endif;
+	if (count($helpers)):
+		echo "/**\n * Helpers\n *\n * @var array\n */\n";
+		echo "\tpublic \$helpers = array(";
+		for ($i = 0, $len = count($helpers); $i < $len; $i++):
+			if ($i != $len - 1):
+				echo "'" . Inflector::camelize($helpers[$i]) . "', ";
+			else:
+				echo "'" . Inflector::camelize($helpers[$i]) . "'";
+			endif;
+		endfor;
+		echo ");\n\n";
+	endif;
 
-    if (count($components)):
-        echo "/**\n * Components\n *\n * @var array\n */\n";
-        echo "\tpublic \$components = array(";
-        for ($i = 0, $len = count($components); $i < $len; $i++):
-            if ($i != $len - 1):
-                echo "'" . Inflector::camelize($components[$i]) . "', ";
-            else:
-                echo "'" . Inflector::camelize($components[$i]) . "'";
-            endif;
-        endfor;
-        echo ");\n\n";
-    endif;
+	if (count($components)):
+		echo "/**\n * Components\n *\n * @var array\n */\n";
+		echo "\tpublic \$components = array(";
+		for ($i = 0, $len = count($components); $i < $len; $i++):
+			if ($i != $len - 1):
+				echo "'" . Inflector::camelize($components[$i]) . "', ";
+			else:
+				echo "'" . Inflector::camelize($components[$i]) . "'";
+			endif;
+		endfor;
+		echo ");\n\n";
+	endif;
+?>
 
-    echo trim($actions) . "\n";
+	public function beforeFilter() {
+		parent::beforeFilter();
+<? if($controllerName == 'Users'): ?>
+		$this->Auth->allow('register');
+<? endif; ?>
+	}
+
+<? if($controllerName == 'Users'): ?>
+	public function login() {
+		if($this->request->is('post')) {
+			if($this->Auth->login()) {
+				return $this->redirect($this->Auth->redirect());
+			} else {
+				$this->Session->setFlash(__('Incorrect username or password.'), 'error');
+			}
+		}
+	}
+
+	public function register() {
+		if($this->request->is('post')) {
+			if($this->User->save($this->request->data)) {
+				$this->Session->setFlash(__('Thank you for registering.'), 'success');
+				$this->redirect(array('action'=>'login'));
+			} else {
+				$this->Session->setFlash(__('Something went wrong. Please ' .
+											'verify your information below and ' .
+											'try again.'), 'error');
+			}
+		}
+	}
+
+	public function logout() {
+		$this->redirect($this->Auth->logout());
+	}
+<? endif; ?>
+
+<?
+	echo trim($actions) . "\n";
 
 endif; ?>
 }

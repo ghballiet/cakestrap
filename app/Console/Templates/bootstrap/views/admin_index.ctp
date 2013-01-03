@@ -1,4 +1,5 @@
 <? $sv = $singularVar; ?>
+<? $pluralVar = strtolower($pluralVar); ?>
 <div class="page-header">
   <h2><?= "<?= __('{$pluralHumanName}') ?>" ?></h2>
 </div>
@@ -26,15 +27,15 @@
   </div>
   <div class="span9">
 <?= "<? if(!empty(\${$pluralVar})): ?>" ?>
-    <table class="table table-condensed">
+	<table class="table table-condensed">
 	  <tr>
 <? foreach($fields as $field): ?>
-        <th><?= "<?= \$this->Paginator->sort('{$field}') ?>" ?></th>
+		<th><?= "<?= \$this->Paginator->sort('{$field}') ?>" ?></th>
 <? endforeach; ?>
-        <th class="actions"><?= "<?= __('Actions') ?>" ?></th>
+		<th class="actions"><?= "<?= __('Actions') ?>" ?></th>
 	  </tr>
 <?= "<? foreach(\${$pluralVar} as \${$singularVar}): ?>\n" ?>
-      <tr>
+	  <tr>
 <? foreach($fields as $field): ?>
 <? $is_key = false; ?>
 <? if(!empty($associations['belongsTo'])): ?>
@@ -44,39 +45,39 @@
 <? $cont = $details['controller']; ?>
 <? $pk = $details['primaryKey']; ?>
 <? $is_key = true; ?>
-        <td><?= "<?= \$this->Html->link(\${$sv}['{$alias}']['{$display}'], array('controller'=>'{$cont}', 'action'=>'view', \${$sv}['{$alias}']['{$pk}'])) ?>" ?></td>
+		<td><?= "<?= \$this->Html->link(\${$sv}['{$alias}']['{$display}'], array('controller'=>'{$cont}', 'action'=>'view', \${$sv}['{$alias}']['{$pk}'])) ?>" ?></td>
 <? endif; ?>
 <? endforeach; ?>
 <? endif; ?>
 <? if($is_key !== true): ?>
-        <td><?= "<?= h(\${$singularVar}['{$modelClass}']['{$field}']) ?>" ?></td>
+		<td><?= "<?= h(\${$singularVar}['{$modelClass}']['{$field}']) ?>" ?></td>
 <? endif; ?>
 <? endforeach; ?>
 <? $pk = $primaryKey; ?>
-        <td class="actions">
+		<td class="actions">
 		  <div class="btn-group">
-		    <a class="btn btn-mini dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
+			<a class="btn btn-mini dropdown-toggle btn-primary" data-toggle="dropdown" href="#">
 			  Action <span class="caret"></span>
-		    </a>
-		    <ul class="dropdown-menu pull-right">
+			</a>
+			<ul class="dropdown-menu pull-right">
 			  <li><?= "<?= \$this->Html->link(__('View'), array('action'=>'view', \${$sv}['{$modelClass}']['{$pk}'])) ?>" ?></li>
 			  <li><?= "<?= \$this->Html->link(__('Edit'), array('action'=>'edit', \${$sv}['{$modelClass}']['{$pk}'])) ?>" ?></li>
 			  <li><?= "<?= \$this->Form->postLink(__('Delete'), array('action'=>'delete', \${$sv}['{$modelClass}']['{$pk}']), null, __('Are you sure?')) ?>" ?></li>
-		    </ul>
+			</ul>
 		  </div>
-	    </td>
+		</td>
 	  </tr>
 <?= "<? endforeach; ?>\n" ?>
-    </table>
-    <ul class="pager">
-      <?= "<?= \$this->Paginator->prev('Previous', array('tag'=>'li', 'class'=>'previous'), '<a>Previous</a>', array('class'=>'previous disabled', 'tag'=>'li')) ?>\n" ?>
-      <?= "<?= \$this->Paginator->next('Next', array('tag'=>'li', 'class'=>'next'), '<a>Next</a>', array('class'=>'next disabled', 'tag'=>'li')) ?>\n" ?>
-    </ul>
+	</table>
+	<ul class="pager">
+	  <?= "<?= \$this->Paginator->prev('Previous', array('tag'=>'li', 'class'=>'previous'), '<a>Previous</a>', array('class'=>'previous disabled', 'tag'=>'li')) ?>\n" ?>
+	  <?= "<?= \$this->Paginator->next('Next', array('tag'=>'li', 'class'=>'next'), '<a>Next</a>', array('class'=>'next disabled', 'tag'=>'li')) ?>\n" ?>
+	</ul>
 <?= "<? else: ?>" ?>
-    <div class="alert alert-info">
-      There are no <strong><?= "<?= __('{$pluralHumanName}') ?>" ?></strong> in the system.
-    </div>  
-<?= "<? endif; ?>" ?>    
+	<div class="alert alert-info">
+	  There are no <strong><?= "<?= __('{$pluralHumanName}') ?>" ?></strong> in the system.
+	</div>
+<?= "<? endif; ?>" ?>
   </div>
 </div>
 
@@ -85,4 +86,3 @@
 <div class="alert alert-info">
 <?= "<?= \$this->Paginator->counter(array('format'=>'Page {:page}/{:pages}, showing {:current}/{:count} records, from {:start}-{:end}')) ?>" ?>
 </div>
-
