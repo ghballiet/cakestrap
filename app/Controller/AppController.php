@@ -35,13 +35,14 @@ class AppController extends Controller {
 	public $components = array(
 		'Session',
 		'Auth' => array(
-			'authorize' => 'controller'
+			'authorize' => array('Controller')
 		)
 	);
 
 	public $helpers = array(
 		'Form' => array('className' => 'BootstrapForm'),
-		'Session' => array('className' => 'BootstrapSession')
+		'Session' => array('className' => 'BootstrapSession'),
+		'Time'
 	);
 
 	public function beforeFilter() {
