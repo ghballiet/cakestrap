@@ -35,7 +35,9 @@ class AppController extends Controller {
 	public $components = array(
 		'Session',
 		'Auth' => array(
-			'authorize' => array('Controller')
+			'authorize' => array('Controller'),
+			// uncomment this line to use email instead of username for auth
+			// 'authenticate' => array('Form' => array('fields' => array('username' => 'email')))
 		)
 	);
 

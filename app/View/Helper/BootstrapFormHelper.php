@@ -10,6 +10,12 @@ class BootstrapFormHelper extends FormHelper {
 		'integer' => 'number'
 	);
 
+	private function _wrap($field, $options, $html) {
+		// wraps the input in the appropriate control box, with errors
+		$error = $this->error($field, $this->_extractOption('error', $options));
+		return $this->Html->div('controls', $html . $error);
+	}
+
 	public function create($model = null, $options = array()) {
 		$options = array_merge(
 			array(
@@ -65,9 +71,7 @@ class BootstrapFormHelper extends FormHelper {
 
 	public function textarea($field_name, $options = array()) {
 		// extends the textarea functionality
-		$input = parent::textarea($field_name, $options);
-		$error = $this->error($field_name, $this->_extractOption('error', $options));
-		return $this->Html->div('controls', $input . $error);
+		return $this->_wrap($field_name, $options, parent::textarea($field_name, $options));
 	}
 
 	public function checkbox($field_name, $options = array()) {
@@ -77,32 +81,29 @@ class BootstrapFormHelper extends FormHelper {
 			'type'=>'checkbox'));
 		$html = parent::checkbox($field_name, $options);
 		$html = preg_replace('/>([\w\s]*)<\/label/', sprintf('>%s $1</label', $html), $label);
-		$error = $this->error($field_name, $this->_extractOption('error', $options));
-		$html = $this->Html->div('controls', $html . $error);
-		return $html;
+		return $this->_wrap($field_name, $options, $html);
 	}
 
 	public function text($field_name, $options = array()) {
 		// extends the default text box
 		if(in_array($field_name, array('email', 'e-mail', 'e_mail')))
 			$options = array_merge(array('type'=>'email'), $options);
-		$input = parent::text($field_name, $options);
-		$error = $this->error($field_name, $this->_extractOption('error', $options));
-		return $this->Html->div('controls', $input . $error);
+		return $this->_wrap($field_name, $options, parent::text($field_name, $options));
 	}
 
 	public function password($field_name, $options = array()) {
 		// extends the default password box
-		$input = parent::password($field_name, $options);
-		$error = $this->error($field_name, $this->_extractOption('error', $options));
-		return $this->Html->div('controls', $input . $error);
+		return $this->_wrap($field_name, $options, parent::password($field_name, $options));
 	}
 
 	public function select($field_name, $options = array(), $attributes = array()) {
 		// extends the default select box
-		$input = parent::select($field_name, $options, $attributes);
-		$error = $this->error($field_name, $this->_extractOption('error', $options));
-		return $this->Html->div('controls', $input . $error);
+		return $this->_wrap($field_name, $options, parent::select($field_name, $options, $attributes));
+	}
+
+	public function number($field_name, $options = array()) {
+		// extends the default number input box
+		return $this->_wrap($field_name, $options, parent::number($field_name, $options));
 	}
 
 	public function submit($caption = null, $options = array()) {

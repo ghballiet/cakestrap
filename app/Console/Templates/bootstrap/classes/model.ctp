@@ -2,6 +2,11 @@
 
 class <?= $name ?> extends <?= $plugin ?>AppModel {
 
+    public $name = '<?= $name ?>';
+    public $virtualFields = array(
+        'hash' => 'SUBSTR(MD5(<?= $name ?>.id), 1, 6)'
+    );
+
 <? if ($useDbConfig != 'default'): ?>
 	public $useDbConfig = '<?= $useDbConfig ?>';
 
@@ -25,8 +30,8 @@ if ($displayField): ?>
     public $order = '<?= $displayField ?>';
 <?
 elseif($name == 'User'): ?>
-	public $displayField = 'User.username';
-    public $order = 'User.username';
+	public $displayField = 'username';
+    public $order = 'username';
 <?
 endif;
 
